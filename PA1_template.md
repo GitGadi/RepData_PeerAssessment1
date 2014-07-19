@@ -1,3 +1,5 @@
+# Reproducible Research: Peer Assessment 1
+
 Reproducible Research - Peer Assessment 1
 ========================================================
 
@@ -56,7 +58,7 @@ plot(dates,vals, xaxt = "n", type = "s")
 axis.Date(side = 1, dates, format = "%d/%m/%Y")
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4.png) 
+![plot of chunk unnamed-chunk-4](./ex1_files/figure-html/unnamed-chunk-4.png) 
 
 ### mean and median total number of steps taken per day
 
@@ -79,7 +81,7 @@ dfPerInterval <- ddply(dfIn[,c(1,3)],.(interval),summarize, mean= mean(steps,na.
 plot(dfPerInterval$interval,dfPerInterval$mean,type="l")
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6.png) 
+![plot of chunk unnamed-chunk-6](./ex1_files/figure-html/unnamed-chunk-6.png) 
 
 ```r
 maxInterval <- dfPerInterval[dfPerInterval$mean == max(dfPerInterval$mean,na.rm = TRUE),  "interval"]
@@ -128,7 +130,7 @@ plot(dates2,vals2, xaxt = "n", type = "s")
 axis.Date(side = 1, dates2, format = "%d/%m/%Y")
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9.png) 
+![plot of chunk unnamed-chunk-9](./ex1_files/figure-html/unnamed-chunk-9.png) 
 
 
 # calculation of mean and median of the steps per day previously 
@@ -188,6 +190,6 @@ plot(dfPerIntervalDayType[dfPerIntervalDayType$weekday == "weekday",]$interval,
 title("weekday")
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13.png) 
+![plot of chunk unnamed-chunk-13](./ex1_files/figure-html/unnamed-chunk-13.png) 
 
 
