@@ -1,12 +1,11 @@
 # Reproducible Research: Peer Assessment 1
 
-Reproducible Research - Peer Assessment 1
-========================================================
+
 
 This assignment makes use of data from a personal activity monitoring device. This device collects data at 5 minute intervals through out the day. The data consists of two months of data from an anonymous individual collected during the months of October and November, 2012 and include the number of steps taken in 5 minute intervals each day
 
-Variables & Data set
-------------
+### Variables & Data set
+
 
 The variables included in this dataset are:  
 - steps: Number of steps taking in a 5-minute interval (missing values are coded as NA)  
@@ -23,19 +22,18 @@ options(scipen = 4, digits =2)
 library(plyr)
 ```
 
-Loading and preprocessing the data
-----------------------------------
+### Loading and preprocessing the data
 
 First we load the data (i.e. read.csv())
 
 
 ```r
-setwd("C:/Users/Gadi/Documents/Coursera/Data Science/repeatable/assignment 2")
+setwd("C:/Private/repeatable/assignment 2")
+
 dfIn <- read.csv("activity.csv", stringsAsFactors = FALSE)
 ```
 
-What is mean total number of steps taken per day?
--------------------------------------------------
+### What is mean total number of steps taken per day?
 
 ### Aggregate steps by day
 
@@ -58,7 +56,7 @@ plot(dates,vals, xaxt = "n", type = "s")
 axis.Date(side = 1, dates, format = "%d/%m/%Y")
 ```
 
-![plot of chunk unnamed-chunk-4](./ex1_files/figure-html/unnamed-chunk-4.png) 
+![plot of chunk unnamed-chunk-4](./PA1_template_files/figure-html/unnamed-chunk-4.png) 
 
 ### mean and median total number of steps taken per day
 
@@ -81,13 +79,12 @@ dfPerInterval <- ddply(dfIn[,c(1,3)],.(interval),summarize, mean= mean(steps,na.
 plot(dfPerInterval$interval,dfPerInterval$mean,type="l")
 ```
 
-![plot of chunk unnamed-chunk-6](./ex1_files/figure-html/unnamed-chunk-6.png) 
+![plot of chunk unnamed-chunk-6](./PA1_template_files/figure-html/unnamed-chunk-6.png) 
 
 ```r
 maxInterval <- dfPerInterval[dfPerInterval$mean == max(dfPerInterval$mean,na.rm = TRUE),  "interval"]
 ```
-Imputing missing values
-------------------------
+### Imputing missing values
 
 Calculating the total number of missing values
 
@@ -130,7 +127,7 @@ plot(dates2,vals2, xaxt = "n", type = "s")
 axis.Date(side = 1, dates2, format = "%d/%m/%Y")
 ```
 
-![plot of chunk unnamed-chunk-9](./ex1_files/figure-html/unnamed-chunk-9.png) 
+![plot of chunk unnamed-chunk-9](./PA1_template_files/figure-html/unnamed-chunk-9.png) 
 
 
 # calculation of mean and median of the steps per day previously 
@@ -148,8 +145,7 @@ Note that  after filling the missing values
 - the median (10766.19) is very close to the median before filling the missing values (10765)
 - however there is a large difference (86129.51) in the total number of steps after filling NA (656737.51) vs. the raw data (570608)
 
-Are there differences in activity patterns between weekdays and weekends?
---------------------------------------------------
+### Are there differences in activity patterns between weekdays and weekends?
 
 We will  add a variable to the data frame  'weekday' that indicates if a data is weekend or weekday. Note Saturday and Sunday are considered the weekend
 
@@ -190,6 +186,6 @@ plot(dfPerIntervalDayType[dfPerIntervalDayType$weekday == "weekday",]$interval,
 title("weekday")
 ```
 
-![plot of chunk unnamed-chunk-13](./ex1_files/figure-html/unnamed-chunk-13.png) 
+![plot of chunk unnamed-chunk-13](./PA1_template_files/figure-html/unnamed-chunk-13.png) 
 
 
